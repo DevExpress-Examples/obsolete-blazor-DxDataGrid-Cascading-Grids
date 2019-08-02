@@ -2,7 +2,6 @@
 @using CascadingDataGrids.Data
 @inject WeatherForecastService ForecastService
 
-<h1>Cascading DxDataGrids</h1>
 @if (regions == null)
 {
     <h1>Loading...</h1>
@@ -16,7 +15,7 @@ else
 }
 @if (forecasts == null)
 {
-    <h1>Select a region</h1>
+    <div>Select a region</div>
 }
 else
 {
