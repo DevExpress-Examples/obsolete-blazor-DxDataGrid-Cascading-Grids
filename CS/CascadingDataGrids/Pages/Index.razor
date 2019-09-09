@@ -9,7 +9,7 @@
 else
 {
     <DxDataGrid Data=@regions ShowPager="false" ShowFilterRow=false
-                SelectedDataRowChanged=@((dataItem) => OnCategorySelectionChanged(dataItem))>
+                SingleSelectedDataRowChanged=@((dataItem) => OnCategorySelectionChanged(dataItem))>
         <DxDataGridColumn Field=@nameof(Region.RegionName)></DxDataGridColumn>
     </DxDataGrid>
 }
