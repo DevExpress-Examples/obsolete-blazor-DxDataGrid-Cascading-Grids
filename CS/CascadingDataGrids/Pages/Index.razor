@@ -39,6 +39,6 @@ else
     async void OnCategorySelectionChanged(Region selectedRegion)
     {
         forecasts = await ForecastService.GetForecastAsync(selectedRegion.RegionName);
-        await base.InvokeAsync(StateHasChanged);
+        await InvokeAsync(StateHasChanged);
     }
 }
