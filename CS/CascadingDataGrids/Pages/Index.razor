@@ -9,7 +9,7 @@
 else
 {
     <DxDataGrid Data=@regions ShowPager="false" ShowFilterRow=false
-                SingleSelectedDataRowChanged=@((dataItem) => OnCategorySelectionChanged(dataItem))>
+            SingleSelectedDataRowChanged=@((dataItem) => OnCategorySelectionChanged(dataItem))>
         <DxDataGridColumn Field=@nameof(Region.RegionName)></DxDataGridColumn>
     </DxDataGrid>
 }
@@ -20,7 +20,7 @@ else
 else
 {
     <DxDataGrid Data=@forecasts ShowPager="false" ShowFilterRow=false>
-        <DxDataGridDateEditColumn Field=@nameof(WeatherForecast.Date) DisplayFormatString="dd/MM/yyyy"></DxDataGridDateEditColumn>
+        <DxDataGridDateEditColumn Field=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy"></DxDataGridDateEditColumn>
         <DxDataGridColumn Field=@nameof(WeatherForecast.Region)></DxDataGridColumn>
         <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)"></DxDataGridColumn>
         <DxDataGridSpinEditColumn Field=@nameof(WeatherForecast.TemperatureF) Caption="Temp. (F)"></DxDataGridSpinEditColumn>
@@ -38,7 +38,10 @@ else
     }
     async void OnCategorySelectionChanged(Region selectedRegion)
     {
-        forecasts = await ForecastService.GetForecastAsync(selectedRegion.RegionName);
+        if (selectedRegion == null)
+            forecasts = null;
+        else
+            forecasts = await ForecastService.GetForecastAsync(selectedRegion.RegionName);
         await InvokeAsync(StateHasChanged);
     }
 }
